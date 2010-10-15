@@ -16,7 +16,10 @@ class Model
   # Assigned in the Anki UI. Space-separated string.
   attr_reader :tags
   # Unique ID in the models table.
-  attr_reader :anki_id  
+  attr_reader :anki_id
+  
+  # Fields belonging to this model.
+  attr_reader :fields
   
   # Reads the models from an Anki deck.
   #
@@ -39,7 +42,21 @@ class Model
     @description = description
     @tags = tags
     @features = features
+
+    @fields = []
+    @fields_by_id = {}
   end
+  
+  # :nodoc: private
+  def add_field(field)
+    if @fields_by_id[field.anki_id]
+      raise ArgumentError, 'The Field has a duplicate Anki ID.'
+    end
+    @fields << field
+    @fields_by_id[field.anki_id] = field
+  end  
+  # :nodoc: private
+  attr_reader :fields_by_id
 end  # class Anki::Importer::Model
 end  # namespace Anki::Importer
 end  # namespace Anki
