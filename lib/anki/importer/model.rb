@@ -1,5 +1,3 @@
-require 'sqlite3'
-
 # :nodoc: namespace
 module Anki
 # :nodoc: namespace
@@ -18,6 +16,9 @@ class Model
   # Unique ID in the models table.
   attr_reader :anki_id
   
+  # Facts implementing this model.
+  attr_reader :facts
+
   # Fields belonging to this model.
   attr_reader :fields
   
@@ -50,6 +51,8 @@ class Model
     @fields_by_id = {}
     @card_models = []
     @card_models_by_id = {}
+    @facts = []
+    @facts_by_id = {}
   end
   
   # :nodoc: private
@@ -73,6 +76,17 @@ class Model
   end
   # :nodoc: private
   attr_reader :card_models_by_id
+
+  # :nodoc: private
+  def add_fact(fact)
+    if @facts_by_id[fact.anki_id]
+      raise ArgumentError, 'The Fact has a duplicate Anki ID.'
+    end
+    @facts << fact
+    @facts_by_id[fact.anki_id] = fact
+  end
+  # :nodoc: private
+  attr_reader :facts_by_id
 end  # class Anki::Importer::Model
 end  # namespace Anki::Importer
 end  # namespace Anki

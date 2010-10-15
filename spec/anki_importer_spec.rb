@@ -38,6 +38,10 @@ describe "anki-importer" do
     it 'should be associated with card models' do
       model.should have(3).card_models
     end
+
+    it 'should be associated with facts' do
+      model.should have(5).facts
+    end
   end
   
   let(:name_field) { deck.fields.find { |f| f.name == 'Color name' } }
@@ -86,6 +90,10 @@ describe "anki-importer" do
       disabled_cm.should_not be_nil
     end
     
+    it 'should be associated with the right model' do
+      front_cm.model.should == model
+    end
+    
     it 'should decode active' do
       front_cm.active.should be_true
       disabled_cm.active.should be_false
@@ -119,5 +127,26 @@ describe "anki-importer" do
     it 'should order models correctly' do
       model.card_models.should == [front_cm, back_cm, disabled_cm]
     end
+  end
+  
+  let(:white_fact) do
+    deck.facts.find { |fact| fact.fields[name_field] == 'white' }
+  end
+  let(:black_fact) do
+    black_hanzi = [233, 187, 145].pack('C*')  # 黑
+    deck.facts.find { |fact| fact.fields[name_field] == black_hanzi }
+  end
+  describe 'Fact' do
+    it 'should decode field values correctly' do
+      white_fact.should_not be_nil
+    end
+    
+    it 'should decode unicode field values correctly' do
+      black_fact.should_not be_nil
+    end
+    
+    it 'should be associated with the right model' do
+      white_fact.model.should == model
+    end    
   end
 end

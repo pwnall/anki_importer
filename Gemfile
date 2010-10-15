@@ -1,5 +1,5 @@
 source "http://rubygems.org"
-gem 'activesupport', '>= 3.0.0', :require => 'active_support/core_ext'
+gem 'activesupport', '>= 3.0.0', :require => ['active_support/core_ext']
 gem 'sqlite3-ruby', '>= 1.3.1', :require => 'sqlite3'
 
 group :development do

@@ -1,6 +1,3 @@
-require 'active_support/core_ext'
-require 'sqlite3'
-
 # :nodoc: namespace
 module Anki
 # :nodoc: namespace
@@ -8,11 +5,13 @@ module Importer
 
 # The root of the Anki object graph.
 class Deck
-  # Array of models.
+  # All the facts (associations) in the deck.
+  attr_reader :facts
+  # All the models in the deck.
   attr_reader :models
-  # Array of fields.
+  # All the fields (fact schema elements) in the deck.
   attr_reader :fields
-  # Array of card models.
+  # All the card models (schemas for cards) in the deck.
   attr_reader :card_models
 
   # Reads an Anki deck database.
@@ -39,6 +38,8 @@ class Deck
     deck.fields.each { |field| field.model.add_field field }
     deck.card_models = CardModel.from_db deck_db, deck
     deck.card_models.each { |cmodel| cmodel.model.add_card_model cmodel }
+    deck.facts = Fact.from_db deck_db, deck
+    deck.facts.each { |fact| fact.model.add_fact fact }
     
     deck
   end
@@ -48,6 +49,7 @@ class Deck
     @models_by_id = {}
     @fields_by_id = {}
     @card_models_by_id = {}
+    @facts_by_id = {}
   end
   
   # :nodoc: private
@@ -71,6 +73,16 @@ class Deck
     @card_models = new_card_models
     @card_models_by_id = new_card_models.index_by(&:anki_id)
   end
+  # :nodoc: private
+  attr_reader :card_models_by_id
+
+  # :nodoc: private
+  def facts=(new_facts)
+    @facts = new_facts
+    @facts_by_id = new_facts.index_by(&:anki_id)
+  end
+  # :nodoc: private
+  attr_reader :facts_by_id
 end  # class Anki::Importer::Deck
 end  # namespace Anki::Importer
 end  # namespace Anki

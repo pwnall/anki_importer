@@ -1,5 +1,3 @@
-require 'sqlite3'
-
 # :nodoc: namespace
 module Anki
 # :nodoc: namespace
@@ -26,7 +24,7 @@ class Field
   # The model that this field belongs to.  
   attr_reader :model
   
-  # Reads the models from an Anki deck.
+  # Reads the fields from an Anki deck.
   #
   # Args:
   #   deck_db:: a Sqlite3::Datbase
