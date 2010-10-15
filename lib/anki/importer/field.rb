@@ -34,7 +34,7 @@ class Field
   #
   # Returns an array of Field instances.
   def self.from_db(deck_db, deck)
-    query = 'SELECT id, modelId, name, description, features, required, "unique", numeric FROM fieldModels'
+    query = 'SELECT id, modelId, name, description, features, required, "unique", numeric FROM fieldModels ORDER BY ordinal'
     models = deck_db.execute(query).map do |anki_id, model_id, name,
         description, features, required, unique, numeric|
       self.new anki_id, deck.models_by_id[model_id], name, description,
@@ -54,6 +54,6 @@ class Field
     @unique = unique
     @numeric = numeric
   end
-end  # class Anki::Importer::Model
+end  # class Anki::Importer::Field
 end  # namespace Anki::Importer
 end  # namespace Anki

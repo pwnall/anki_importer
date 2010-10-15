@@ -21,6 +21,9 @@ class Model
   # Fields belonging to this model.
   attr_reader :fields
   
+  # Schema for cards based off this model.
+  attr_reader :card_models
+  
   # Reads the models from an Anki deck.
   #
   # Args:
@@ -45,6 +48,8 @@ class Model
 
     @fields = []
     @fields_by_id = {}
+    @card_models = []
+    @card_models_by_id = {}
   end
   
   # :nodoc: private
@@ -57,6 +62,17 @@ class Model
   end  
   # :nodoc: private
   attr_reader :fields_by_id
+  
+  # :nodoc: private
+  def add_card_model(card_model)
+    if @card_models_by_id[card_model.anki_id]
+      raise ArgumentError, 'The CardModel has a duplicate Anki ID.'
+    end
+    @card_models << card_model
+    @card_models_by_id[card_model.anki_id] = card_model
+  end
+  # :nodoc: private
+  attr_reader :card_models_by_id
 end  # class Anki::Importer::Model
 end  # namespace Anki::Importer
 end  # namespace Anki
