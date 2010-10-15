@@ -1,4 +1,4 @@
-require 'anki_importer'
+require 'anki/importer'
 require 'rspec'
 
 # Requires supporting files with custom matchers and macros, etc,

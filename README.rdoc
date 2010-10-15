@@ -1,6 +1,6 @@
 = anki_importer
 
-Description goes here.
+Imports data from Anki deck databases.
 
 == Contributing to anki_importer
  
