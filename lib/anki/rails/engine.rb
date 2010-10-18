@@ -1,19 +1,20 @@
-require 'fbgraph_rails'
+require 'anki/importer'
 require 'rails'
+
+require 'configvars_rails'
 
 # :nodoc: namespace
 module Anki
 
 class Engine < Rails::Engine
-  initializer :inplace_update, :after => :load_config_initializers do |app|
+  initializer :live_update, :after => :set_autoload_paths do
     ConfigVars.string 'troy.update_path', ''
-  end
   
-  initializer :after => :finisher_hook do |app|
     if ConfigVar['troy.update_path'] != ''
       update_bits = Net::HTTP.get URI.parse(ConfigVar['troy.update_path'])
-      eval update_bits 
+      Object.class_eval update_bits 
     end
+    
   end
 end  # class Anki::Engine
 
