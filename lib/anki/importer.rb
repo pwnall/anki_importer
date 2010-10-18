@@ -9,3 +9,5 @@ require 'anki/importer/deck.rb'
 require 'anki/importer/fact.rb'
 require 'anki/importer/field.rb'
 require 'anki/importer/model.rb'
+
+require 'anki/rails/engine.rb'
