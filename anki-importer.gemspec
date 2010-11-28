@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{anki-importer}
-  s.version = "0.1.2"
+  s.version = "0.1.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Victor Costan"]
-  s.date = %q{2010-11-25}
+  s.date = %q{2010-11-28}
   s.description = %q{Extracts models, facts and cards from Anki deck databases.}
   s.email = %q{victor@costan.us}
   s.extra_rdoc_files = [
@@ -60,7 +60,7 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<rcov>, [">= 0"])
       s.add_runtime_dependency(%q<sqlite3-ruby>, [">= 1.3.1"])
       s.add_runtime_dependency(%q<activesupport>, [">= 3.0.0"])
-      s.add_runtime_dependency(%q<i18n>, [">= 3.0.0"])
+      s.add_runtime_dependency(%q<i18n>, [">= 0.4.2"])
       s.add_development_dependency(%q<rspec>, ["~> 2.0.0"])
       s.add_development_dependency(%q<bundler>, ["~> 1.0.0"])
       s.add_development_dependency(%q<jeweler>, ["~> 1.5.0.pre5"])
@@ -75,7 +75,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<rcov>, [">= 0"])
       s.add_dependency(%q<sqlite3-ruby>, [">= 1.3.1"])
       s.add_dependency(%q<activesupport>, [">= 3.0.0"])
-      s.add_dependency(%q<i18n>, [">= 3.0.0"])
+      s.add_dependency(%q<i18n>, [">= 0.4.2"])
       s.add_dependency(%q<rspec>, ["~> 2.0.0"])
       s.add_dependency(%q<bundler>, ["~> 1.0.0"])
       s.add_dependency(%q<jeweler>, ["~> 1.5.0.pre5"])
@@ -91,7 +91,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<rcov>, [">= 0"])
     s.add_dependency(%q<sqlite3-ruby>, [">= 1.3.1"])
     s.add_dependency(%q<activesupport>, [">= 3.0.0"])
-    s.add_dependency(%q<i18n>, [">= 3.0.0"])
+    s.add_dependency(%q<i18n>, [">= 0.4.2"])
     s.add_dependency(%q<rspec>, ["~> 2.0.0"])
     s.add_dependency(%q<bundler>, ["~> 1.0.0"])
     s.add_dependency(%q<jeweler>, ["~> 1.5.0.pre5"])
