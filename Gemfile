@@ -4,7 +4,7 @@ gem 'i18n', '>= 0.4.2'
 gem 'sqlite3-ruby', '>= 1.3.1', :require => 'sqlite3'
 
 group :development do
-  gem "rspec", "~> 2.0.0"
+  gem "rspec", "~> 2.5.0"
   gem "bundler", "~> 1.0.0"
   gem "jeweler", "~> 1.5.0"
   gem "rcov", ">= 0"

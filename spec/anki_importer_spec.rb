@@ -100,11 +100,11 @@ describe "anki-importer" do
     end
     
     it 'should decode the question template' do
-      front_cm.question_template.should == '%(Color name)s'
+      front_cm.question_template.should include('{{{Color name}}}')
     end
 
     it 'should decode the answer template' do
-      front_cm.answer_template.should == '%(HTML color code)s'
+      front_cm.answer_template.should include('{{{HTML color code}}}')
     end
 
     it 'should decode question formatting' do
@@ -132,8 +132,11 @@ describe "anki-importer" do
   let(:white_fact) do
     deck.facts.find { |fact| fact.fields[name_field] == 'white' }
   end
-  let(:black_fact) do
+  let(:black_fact) do    
     black_hanzi = [233, 187, 145].pack('C*')  # 黑
+    if black_hanzi.respond_to? :force_encoding
+      black_hanzi.force_encoding 'UTF-8'
+    end
     deck.facts.find { |fact| fact.fields[name_field] == black_hanzi }
   end
   describe 'Fact' do
