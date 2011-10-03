@@ -13,22 +13,13 @@ require 'jeweler'
 Jeweler::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
   gem.name = "anki-importer"
+  gem.homepage = "http://github.com/pwnall/anki_importer"
+  gem.license = "MIT"
   gem.summary = %Q{Importer for Anki decks}
   gem.description = %Q{Extracts models, facts and cards from Anki deck databases.}
   gem.email = "victor@costan.us"
-  gem.homepage = "http://github.com/pwnall/anki_importer"
   gem.authors = ["Victor Costan"]
-  # Include your dependencies below. Runtime dependencies are required when using your gem,
-  # and development dependencies are only needed for development (ie running rake tasks, tests, etc)
-  #  spec.add_runtime_dependency 'jabber4r', '> 0.1'
-  #  spec.add_development_dependency 'rspec', '> 1.2.3'
-  gem.add_runtime_dependency 'sqlite3', '>= 1.3.3'
-  gem.add_runtime_dependency 'activesupport', '>= 3.0.0'
-  gem.add_runtime_dependency 'i18n', '>= 0.4.2'
-  gem.add_development_dependency "rspec", "~> 2.0.0"
-  gem.add_development_dependency "bundler", "~> 1.0.0"
-  gem.add_development_dependency "jeweler", "~> 1.5.0"
-  gem.add_development_dependency "rcov", ">= 0"
+  # Dependencies in Gemfile.
 end
 Jeweler::RubygemsDotOrgTasks.new
 
@@ -45,7 +36,7 @@ end
 
 task :default => :spec
 
-require 'rake/rdoctask'
+require 'rdoc/task'
 Rake::RDocTask.new do |rdoc|
   version = File.exist?('VERSION') ? File.read('VERSION') : ""
 
